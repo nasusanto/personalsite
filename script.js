@@ -122,7 +122,31 @@ function initCurvedText() {
 
 document.addEventListener('DOMContentLoaded', () => {
     initCurvedText();
+    initProjectCards();
 });
+
+// Initialize project card click handlers for mobile
+function initProjectCards() {
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    // Detect if device is touch-enabled (mobile/tablet)
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    
+    projectCards.forEach(card => {
+        // Only add click handler for touch devices
+        if (isTouchDevice) {
+            card.addEventListener('click', function(e) {
+                // Don't toggle if clicking on a link inside
+                if (e.target.tagName === 'A' || e.target.closest('a')) {
+                    return;
+                }
+                
+                // Toggle expanded class
+                this.classList.toggle('expanded');
+            });
+        }
+    });
+}
 
 // Recalculate on window resize for responsive design
 let resizeTimeout;

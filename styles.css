@@ -346,9 +346,10 @@ body {
     overflow: hidden; /* Ensures expanded content doesn't overflow */
 }
 
-.project-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+/* Active state for mobile clicks */
+.project-card.expanded {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     border-color: rgba(0, 0, 0, 0.15);
 }
 
@@ -368,8 +369,25 @@ body {
     margin-top: 0;
 }
 
-/* Show expanded content on hover */
-.project-card:hover .project-expanded {
+/* Show expanded content on hover (desktop only - devices that support hover) */
+@media (hover: hover) {
+    .project-card:hover .project-expanded {
+        max-height: 500px; /* Adjust based on content */
+        opacity: 1;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+    
+    .project-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        border-color: rgba(0, 0, 0, 0.15);
+    }
+}
+
+/* Show expanded content when clicked (mobile) */
+.project-card.expanded .project-expanded {
     max-height: 500px; /* Adjust based on content */
     opacity: 1;
     margin-top: 20px;

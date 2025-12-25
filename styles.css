@@ -239,6 +239,7 @@ body {
 .profile-actions {
     display: flex;
     gap: 16px; /* Increased from 12px */
+    /* Left-aligned on desktop, centered on mobile via media queries */
 }
 
 /* Profile icon buttons - Larger */
@@ -467,4 +468,257 @@ body {
 }
 
 /* Products Section - styles inherited from .glass-box */
+
+/* ==================== MOBILE RESPONSIVE STYLES ==================== */
+
+/* Tablet and below (768px and smaller) */
+@media (max-width: 768px) {
+    .container {
+        padding: 16px 20px;
+    }
+    
+    /* Header: Stack navigation or make it more compact */
+    .site-header {
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 12px 16px;
+    }
+    
+    .header-nav {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+    
+    /* Top section: Stack memoji and profile vertically */
+    .top-section {
+        flex-direction: column;
+        gap: 32px;
+        align-items: center;
+    }
+    
+    /* Memoji container: Slightly smaller on tablet */
+    .memoji-container {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .memoji {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .phrases-orbit {
+        width: 200px;
+        height: 200px;
+        margin-left: -100px;
+        margin-top: -100px;
+    }
+    
+    /* Phrase text: Scale with container */
+    .phrase-text {
+        font-size: 13px; /* Scales down from 16px for 200px container */
+    }
+    
+    /* Profile section: Center align on mobile */
+    .profile-section {
+        text-align: center;
+        width: 100%;
+    }
+    
+    .profile-actions {
+        justify-content: center;
+        margin-top: 16px;
+    }
+    
+    /* Project cards: Full width on mobile */
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Mobile phones (480px and smaller) */
+@media (max-width: 480px) {
+    .container {
+        padding: 12px 16px;
+    }
+    
+    /* Header: Compact navigation */
+    .site-header {
+        padding: 12px;
+        margin-bottom: 24px;
+    }
+    
+    .header-left {
+        gap: 8px;
+    }
+    
+    .header-memoji {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .header-name {
+        font-size: 18px;
+    }
+    
+    .header-nav {
+        gap: 12px;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .nav-link {
+        font-size: 12px;
+        gap: 4px;
+    }
+    
+    .nav-link .nav-icon {
+        font-size: 14px;
+        width: 16px;
+        height: 16px;
+    }
+    
+    /* Hide nav text on very small screens, show only icons */
+    .nav-link .nav-text {
+        display: none;
+    }
+    
+    /* Memoji: Smaller on mobile */
+    .memoji-container {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .memoji {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .phrases-orbit {
+        width: 180px;
+        height: 180px;
+        margin-left: -90px;
+        margin-top: -90px;
+    }
+    
+    /* Phrase text: Scale with container */
+    .phrase-text {
+        font-size: 12px; /* Scales down from 16px for 180px container */
+    }
+    
+    /* Profile section: Smaller fonts */
+    .profile-name {
+        font-size: 28px;
+    }
+    
+    .profile-bio {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+    
+    .profile-actions {
+        justify-content: center;
+        gap: 12px;
+        margin-top: 12px;
+    }
+    
+    .profile-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
+    }
+    
+    /* Section headers: Smaller */
+    .section-title h2 {
+        font-size: 20px;
+    }
+    
+    /* Project cards: Compact */
+    .project-info h3 {
+        font-size: 16px;
+    }
+    
+    .project-info p {
+        font-size: 13px;
+    }
+    
+    .project-logo {
+        width: 50px;
+        height: 50px;
+    }
+    
+    /* Glass boxes: Less padding */
+    .glass-box {
+        padding: 20px;
+    }
+    
+    /* Poker game: Stack hands vertically */
+    .poker-game-area {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .poker-score {
+        flex-direction: column;
+        gap: 16px;
+        padding: 16px;
+    }
+    
+    .score-value {
+        font-size: 28px;
+    }
+    
+    .poker-card {
+        width: 50px;
+        height: 70px;
+        font-size: 14px;
+    }
+}
+
+/* Very small phones (360px and smaller) */
+@media (max-width: 360px) {
+    .container {
+        padding: 10px 12px;
+    }
+    
+    .memoji-container {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .memoji {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .phrases-orbit {
+        width: 160px;
+        height: 160px;
+        margin-left: -80px;
+        margin-top: -80px;
+    }
+    
+    /* Phrase text: Scale with container */
+    .phrase-text {
+        font-size: 11px; /* Scales down from 16px for 160px container */
+    }
+    
+    .profile-name {
+        font-size: 24px;
+    }
+    
+    .profile-bio {
+        font-size: 13px;
+    }
+    
+    .profile-actions {
+        gap: 10px;
+    }
+    
+    .profile-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+}
 

@@ -5,10 +5,17 @@
 // This allows text to flow naturally with proper character spacing
 function createCurvedText() {
     const phrases = document.querySelectorAll('.phrase');
-    const orbitRadius = 90; // Radius of the circle in pixels
-    const centerX = 120; // Center of the 240px container
-    const centerY = 120;
-    const fontSize = 16; // Font size in pixels
+    if (phrases.length === 0) return;
+    
+    // Get the container size dynamically (responsive)
+    const container = document.querySelector('.memoji-container');
+    if (!container) return;
+    
+    const containerSize = container.offsetWidth || 240; // Get actual width, default to 240px
+    const orbitRadius = containerSize * 0.375; // 37.5% of container (90px for 240px)
+    const centerX = containerSize / 2;
+    const centerY = containerSize / 2;
+    const fontSize = Math.max(12, containerSize * 0.067); // Responsive font size (16px for 240px, scales down)
     
     // Starting angles for each phrase (in degrees)
     const startAngles = {
@@ -59,12 +66,12 @@ function createCurvedText() {
         // Create SVG element for text path
         const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         svg.setAttribute('class', 'phrase-svg');
-        svg.setAttribute('viewBox', '0 0 240 240');
+        svg.setAttribute('viewBox', `0 0 ${containerSize} ${containerSize}`);
         svg.style.position = 'absolute';
         svg.style.top = '0';
         svg.style.left = '0';
-        svg.style.width = '240px';
-        svg.style.height = '240px';
+        svg.style.width = `${containerSize}px`;
+        svg.style.height = `${containerSize}px`;
         svg.style.overflow = 'visible';
         
         // Calculate arc start and end angles (centered around baseStartAngle)
@@ -91,6 +98,7 @@ function createCurvedText() {
         // Create text element that follows the path
         const textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         textElement.setAttribute('class', `phrase-text ${phraseClass}-text`);
+        textElement.setAttribute('font-size', fontSize); // Set responsive font size
         
         // Create textPath element
         const textPath = document.createElementNS('http://www.w3.org/2000/svg', 'textPath');
@@ -107,5 +115,25 @@ function createCurvedText() {
     });
 }
 
-// Initialize curved text when page loads
-document.addEventListener('DOMContentLoaded', createCurvedText);
+// Initialize curved text when page loads and on resize
+function initCurvedText() {
+    createCurvedText();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initCurvedText();
+});
+
+// Recalculate on window resize for responsive design
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        // Clear existing SVG content
+        document.querySelectorAll('.phrase').forEach(phrase => {
+            phrase.innerHTML = '';
+        });
+        // Recreate with new container size
+        createCurvedText();
+    }, 250); // Debounce resize events
+});
